@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "c62d2db0-bd18-4274-a391-dba5df47486f",
+		"name": "Book API",
+		"description": "Colectia Postman pentru testarea API-ului Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35324568"
+	},
+	"item": [
+		{
+			"name": "Get All Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books"
+					]
+				},
+				"description": "Example Response:\n\n{  \n\"id\": \"1\",  \n\"title\": \"Clean Code\",  \n\"author\": \"Robert C. Martin\"  \n},  \n{  \n\"id\": \"2\",  \n\"title\": \"The Pragmatic Programmer\",  \n\"author\": \"Andy Hunt & Dave Thomas\"  \n}\n\n- `200 OK` - Books retrieved successfully\n    \n- `500 Internal Server Error` - An error occurred while reading data"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/books/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books",
+						"1"
+					]
+				},
+				"description": "Example Response:\n\n{  \n\"id\": \"1\",  \n\"title\": \"Clean Code\",  \n\"author\": \"Robert C. Martin\"  \n}\n\n200 OK - Book found  \n404 Not Found - Book with the given ID does not exist"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a New Book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"2\",\n  \"title\": \"New Book Title\",\n  \"author\": \"John Doe\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books"
+					]
+				},
+				"description": "Response Example:\n\n{  \n\"message\": \"Book created\"  \n}\n\n**Status Codes:**\n\n- `201 Created` - Book successfully added\n    \n- `400 Bad Request` - Missing or invalid dat"
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Book",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Updated Book Title\",\n  \"author\": \"Jane Doe\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/books/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books",
+						"2"
+					]
+				},
+				"description": "```\n{\n    \"message\": \"Book updated\"\n}\n\n ```\n\n**Status Codes:**\n\n- `200 OK` - Book updated successfully\n    \n- `404 Not Found` - Book with the given ID does not exist\n    \n- `400 Bad Request` - Invalid request format"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/books/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books",
+						"2"
+					]
+				},
+				"description": "Response Example:\n\n{  \n\"message\": \"Book deleted\"  \n}\n\n**Status Codes:**\n\n- `200 OK` - Book successfully deleted\n    \n- `404 Not Found` - Book with the given ID does not exist"
+			},
+			"response": []
+		},
+		{
+			"name": "Options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"description": "**Status Codes:**\n\n- `200 OK` - Book successfully deleted"
+			},
+			"response": []
+		},
+		{
+			"name": "Create  a New Book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"3\",\r\n  \"title\": \"Harry Potter\",\r\n  \"author\": \"XYZ\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/POST/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"POST",
+						"add"
+					]
+				},
+				"description": "Response Example:\n\n{  \n\"message\": \"Book created\"  \n}\n\n**Status Codes:**\n\n- `201 Created` - Book successfully added\n    \n- `400 Bad Request` - Missing or invalid dat"
+			},
+			"response": []
+		}
+	]
+}
