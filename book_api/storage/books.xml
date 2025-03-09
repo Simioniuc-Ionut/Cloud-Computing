@@ -1,3 +1,3 @@
 <books>
-<book id="3"><title>Harry Potter</title><author>XYZ</author></book>
-</books>
+<book id="3"><title>Harry Potter and the Philosopher's Stone</title><author>J.K. Rowling</author></book>
+<book id="4"><title>Refactoring</title><author>Ceva</author></book><book id="5"><title>Refactoring</title><author>Martin Fowler</author></book><book id="6"><title>The Inner Circle</title><author>Brad Meltzer</author></book></books>

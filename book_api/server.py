@@ -14,6 +14,12 @@ class HttpRequestHandler(BaseHTTPRequestHandler):
     def do_DELETE(self):
         handle_request(self, "DELETE")
 
+    def do_PATCH(self):
+        handle_request(self, "PATCH")
+
+    def do_HEAD(self):
+        handle_request(self, "HEAD")
+
     def do_OPTIONS(self):  # Pentru suport CORS
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
