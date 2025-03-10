@@ -98,6 +98,3 @@ Ensure the storage/books.xml file exists before running the server.
 If a book with an existing ISBN is added, the API returns 409 Conflict.
 
 Use HEAD /books/{id} to check if a book exists without fetching data.
-
-🚀 Now you're ready to use the Book API! If you have questions, feel free to ask. 😊
-
