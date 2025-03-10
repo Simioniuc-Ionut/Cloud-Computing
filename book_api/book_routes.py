@@ -1,5 +1,5 @@
 import json
-from book_controller import get_books, create_book, update_book,update_book_by_title,update_book_by_author,patch_book,head_book, delete_book
+from book_controller import get_books,get_book, create_book, update_book,update_book_by_title,update_book_by_author,patch_book,head_book, delete_book
 from urllib.parse import urlparse, parse_qs
 def handle_request(handler, method):
     path = handler.path
@@ -10,14 +10,18 @@ def handle_request(handler, method):
             query_params = parse_qs(urlparse(path).query)  #  Extract query parameters
 
             if method == "GET":
-                if path.startswith("/books"):
+                if path == "/books":
+                    response = get_books()
+                elif path.startswith("/books/filters"):
                     filters = {}
                     if "author" in query_params:
                         filters["author"] = query_params["author"][0]
 
                     sort_by = query_params.get("sort", [None])[0]
                     response = get_books(filters, sort_by)
-
+                else:
+                    book_id = path.split("/")[-1]
+                    response = get_book(book_id)
             elif method == "POST":
                 length = int(handler.headers.get('Content-Length', 0))
                 if length == 0:

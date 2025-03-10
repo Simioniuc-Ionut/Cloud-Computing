@@ -33,7 +33,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/books/1",
+					"raw": "http://localhost:8081/books/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -41,7 +41,7 @@
 					"port": "8081",
 					"path": [
 						"books",
-						"1"
+						"3"
 					]
 				},
 				"description": "Example Response:\n\n{  \n\"id\": \"1\",  \n\"title\": \"Clean Code\",  \n\"author\": \"Robert C. Martin\"  \n}\n\n200 OK - Book found  \n404 Not Found - Book with the given ID does not exist"
@@ -54,14 +54,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/books?sort=title",
+					"raw": "http://localhost:8081/books/filters?sort=title",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
-						"books"
+						"books",
+						"filters"
 					],
 					"query": [
 						{
@@ -79,14 +80,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8081/books?sort=author",
+					"raw": "http://localhost:8081/books/filters?sort=author",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
-						"books"
+						"books",
+						"filters"
 					],
 					"query": [
 						{

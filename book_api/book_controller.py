@@ -85,6 +85,12 @@ def update_book(book_id, data):
         return {"status": 200, "data": {"message": "Book updated"}}
     return {"status": 404, "data": {"error": "Book not found"}}
 
+def get_book(book_id):
+    book = books.get(book_id)
+    if book:
+        return {"status": 200, "data": book}
+    return {"status": 404, "data": {"error": "Book not found"}}
+
 def update_book_by_title(title, data):
     books_list = books.get_all()
     for book in books_list:
