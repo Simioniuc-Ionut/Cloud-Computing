@@ -23,17 +23,17 @@ class HttpRequestHandler(BaseHTTPRequestHandler):
     def do_OPTIONS(self):  # Pentru suport CORS
         self.send_response(200)
         self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.send_header('Allow', 'GET, POST, PUT, PATCH, HEAD , DELETE, OPTIONS')
         self.end_headers()
 
 
 
 def run(server_class=HTTPServer, handler_class=HttpRequestHandler, port=8081):
     server_address = ('', port)
-    httpd = server_class(server_address, handler_class)
+    https = server_class(server_address, handler_class)
     print(f"Server running on port {port}...")
-    httpd.serve_forever()
+    https.serve_forever()
 
 if __name__ == "__main__":
     run()

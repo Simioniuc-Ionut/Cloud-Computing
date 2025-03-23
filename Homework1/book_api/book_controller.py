@@ -70,6 +70,9 @@ def get_books(filters=None, sort_by=None):
     """Return all books, optionally filtered and sorted."""
     books_list = books.get_all()
 
+    print(f"Initial books list: {books_list}")
+    print(f"Filters: {filters} , Sort by: {sort_by}")
+
     # Apply filters (filters is a dictionary) - e.g. {"author": "Rowling"} or {"title": "Harry Potter"}
     if filters and "author" in filters:
         books_list = [book for book in books_list if book["author"].lower() == filters["author"].lower()]
@@ -77,6 +80,8 @@ def get_books(filters=None, sort_by=None):
     # Apply sorting (sort_by is a string) - e.g. "title" or "author"
     if sort_by in ["title", "author"]:
         books_list = sorted(books_list, key=lambda x: x[sort_by].lower())
+
+    print(f"Books list after filtering: {books_list}")
 
     return {"status": 200, "data": books_list}
 
