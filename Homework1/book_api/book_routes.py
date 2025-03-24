@@ -61,6 +61,7 @@ def handle_request(handler: BaseHTTPRequestHandler, method: str):
                             status_code = 400
                         else:
                             post_data = json.loads(handler.rfile.read(length))
+                            print("|||",post_data)
                             response_data = create_book(post_data)
                             status_code = 201
                     elif method == "PUT":

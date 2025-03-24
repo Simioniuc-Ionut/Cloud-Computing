@@ -22,6 +22,7 @@ function BookForm({ onBookAdded }) {
     const newBook = { id, title, author, isbn };
 
     try {
+      console.log("Sending book to backend:", newBook);
 
       const response = await addBook(newBook); // Send POST request to the backend
 
@@ -46,6 +47,7 @@ function BookForm({ onBookAdded }) {
       alert(errorMessage);
       }
     } catch (error) {
+      console.error("Error adding book:", error);
       alert("An error occurred while adding the book. Please try again later.");
     }
   };
@@ -53,11 +55,11 @@ function BookForm({ onBookAdded }) {
   return (
     <form onSubmit={handleSubmit}>
       
-      {/* <input
+      <input
         value={id}
         onChange={(e) => setId(e.target.value)}
         placeholder="Book ID"
-      /> */}
+      />
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}

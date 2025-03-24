@@ -8,8 +8,14 @@ def generate_unique_id():
     existing_books = books.get_all()
     if not existing_books:
         return "1"
-    max_id = max(int(book["id"]) for book in existing_books)
-    return str(max_id + 1)
+    
+    # Filtrăm ID-urile invalide și eliminăm duplicatele
+    valid_ids = {int(book["id"]) for book in existing_books if book.get("id", "").isdigit()}
+    
+    # Găsim primul ID care nu este utilizat
+    new_id = max(valid_ids, default=0) + 1
+    
+    return str(new_id)
 
 
 def get_book_by_isbn(isbn):
@@ -33,8 +39,10 @@ def get_book_by_isbn(isbn):
 
 def create_book(data):
     """Creates a book, either with an automatic ID or using ISBN."""
-    if "isbn" in data:
-        # Search for the book in Google Books API
+    
+    if "isbn" in data and data.get("isbn") != "":
+        print("aici ?oare")
+        # Search for the book in Google Books APIs
         book_info = get_book_by_isbn(data["isbn"])
         if not book_info:
             return {"status": 400, "data": {"error": "Invalid ISBN or book not found"}}
@@ -51,10 +59,11 @@ def create_book(data):
         return {"status": 201, "data": {"message": "Book added successfully", "book": book_info}}
 
     elif "title" in data and "author" in data:
-        # Check if the ID was provided
-        book_id = data.get("id", generate_unique_id())
+            
+        # Always generate a new unique ID
+        book_id = generate_unique_id()
 
-        # Check if the ID already exists
+        # Check if the ID already exists (should not happen with unique ID generation)
         existing_book = books.get(book_id)
         if existing_book:
             return {"status": 409, "data": {"error": "Book with this ID already exists"}}
@@ -63,6 +72,7 @@ def create_book(data):
         new_book = {"id": book_id, "title": data["title"], "author": data["author"]}
         books.add(new_book)
         return {"status": 201, "data": {"message": "Book added successfully", "book": new_book}}
+
 
     return {"status": 400, "data": {"error": "Invalid request format"}}
 

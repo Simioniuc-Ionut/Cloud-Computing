@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   const handleBookAdded = (newBook) => {
-    setBooks([...books, newBook]);
+    setBooks([books, newBook]);
   };
 
   const handleBookDeleted = (deletedBookId) => {

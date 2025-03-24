@@ -17,12 +17,11 @@ public class OpenLibraryController {
     }
 
     @GetMapping("/search")
-    public Mono<Map<String, Object>> searchBooks(@RequestParam String title, @RequestParam(defaultValue = "1") int page) {
+    public Mono<Map<String, Object>> searchBooks(@RequestParam String title) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/search.json")
                         .queryParam("title", title)
-                        .queryParam("page", page)
                         .build())
                 .retrieve()
                 .bodyToMono(Map.class)
