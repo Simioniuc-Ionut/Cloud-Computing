@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ListRecommBooks from "./api/RecommendBooksApi";
 
+// apis
+import ListRecommBooks from "./api/RecommendBooksApi";
 // old server api
 import { fetchAllBooks } from "./api/OldServerApi";
 import { searchOpenLibraryBooks } from "./api/GoogleBooksApi";
+
+
 import BookList from "./components/oldServerComponents/BookList";
 import BookForm from "./components/oldServerComponents/BookForm";
 import BookOptions from "./components/oldServerComponents/BookOptions";
@@ -92,6 +95,8 @@ function App() {
       >
         <h1>Book Recommendations 📚</h1>
       </div>
+      
+        <ListRecommBooks books={books} />
   
       {/* Error Message */}
       {errorMessage && (
